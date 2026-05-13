@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftLog Logistics | Delivering Trust, On Time, Every Time</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --orange: #FF6B35;
+            --white: #FFFFFF;
+            --gray-light: #F8F9FA;
+            --gray-text: #6C757D;
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Poppins', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links li a:hover {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            background-color: var(--orange);
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            background-color: #E65A29;
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--white);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(10, 22, 40, 0.8), rgba(10, 22, 40, 0.8)), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-main);
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #E65A29;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--navy);
+        }
+
+        /* Trusted By */
+        .trusted-by {
+            padding: 60px 0;
+            background-color: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .trusted-by h4 {
+            text-align: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-text);
+            margin-bottom: 40px;
+        }
+
+        .logo-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+
+        .logo-row svg {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Services */
+        .services {
+            background-color: var(--gray-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header span {
+            color: var(--orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--orange);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 107, 53, 0.1);
+            color: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Tracking Section */
+        .tracking {
+            background-color: var(--navy);
+            color: var(--white);
+            padding-bottom: 120px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tracking-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-50%);
+        }
+
+        .tracking-input {
+            flex: 1;
+            padding: 18px 24px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .tracking-result {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .tracking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .map-container {
+            background: #1a2635;
+            border-radius: 8px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 40%, rgba(255,255,255,0.05) 0%, transparent 60%),
+                radial-gradient(circle at 80% 60%, rgba(255,255,255,0.05) 0%, transparent 60%);
+            background-color: #1a2635;
+        }
+
+        .map-grid {
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--orange);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(255,107,53, 0.8);
+            transition: all 1s ease;
+        }
+
+        .map-pin::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--orange);
+            border-radius: 50%;
+            animation: mapPulse 2s infinite;
+        }
+
+        @keyframes mapPulse {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .live-label {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,0,0,0.8);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 3;
+        }
+
+        .live-label span {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .tracking-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .tracking-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: -1;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--navy);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .step.active .step-dot {
+            background: var(--orange);
+            border-color: var(--orange);
+            box-shadow: 0 0 15px rgba(255,107,53,0.5);
+        }
+
+        /* Why Choose Us */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            color: var(--orange);
+        }
+
+        .benefit-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--gray-light);
+            text-align: center;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: #ddd;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-icon {
+            width: 100px;
+            height: 100px;
+            background-color: var(--white);
+            border: 4px solid var(--gray-light);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            color: var(--orange);
+            font-size: 2rem;
+        }
+
+        .timeline-item.active .timeline-icon {
+            color: var(--white);
+            background-color: var(--orange);
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Stats */
+        .stats {
+            background: linear-gradient(rgba(10, 22, 40, 0.9), rgba(10, 22, 40, 0.9)), 
+                        url('https://images.unsplash.com/photo-1519003722824-192d992a60e0?q=80&w=2070&auto=format&fit=crop') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: var(--orange);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .testimonial-content {
+            background-color: var(--gray-light);
+            padding: 50px;
+            border-radius: 12px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-content::after {
+            content: '“';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 6rem;
+            color: var(--orange);
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial-card p {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--navy);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            font-style: normal;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background-color: var(--orange);
+            width: 25px;
+            border-radius: 5px;
+        }
+
+        /* Quote Section */
+        .quote {
+            background-color: var(--gray-light);
+        }
+
+        .quote-box {
+            background-color: var(--white);
+            display: flex;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .quote-info {
+            flex: 1;
+            padding: 60px;
+            background-color: var(--navy);
+            color: var(--white);
+        }
+
+        .quote-form {
+            flex: 1.5;
+            padding: 60px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .quote-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--orange);
+        }
+
+        .info-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--orange);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--orange);
+        }
+
+        .footer-col p {
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            opacity: 0.7;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--orange);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .social-btn:hover {
+            background: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .chat-window.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .chat-header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h4 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header h4::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #27ae60;
+            border-radius: 50%;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #fdfdfd;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: #f1f1f1;
+            color: var(--navy);
+            border-bottom-left-radius: 0;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--navy);
+            color: var(--white);
+            border-bottom-right-radius: 0;
+        }
+
+        .chat-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            border: 1px solid #eee;
+            padding: 10px 15px;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-footer button {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 10px;
+            background: #f1f1f1;
+            border-radius: 10px;
+            width: fit-content;
+            margin-bottom: 10px;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: #aaa;
+            border-radius: 50%;
+            animation: typing 1.5s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--navy);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .tracking-card {
+                flex-direction: column;
+            }
+
+            .tracking-input {
+                width: 100%;
+            }
+
+            .quote-box {
+                flex-direction: column;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .timeline {
+                flex-direction: column;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: span 1;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                SWIFTLOG<span>.</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#tracking">Track</a></li>
+                <li><a href="#benefits">Why Us</a></li>
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#quote" class="nav-cta">Get a Quote</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="reveal">Delivering Trust, <br>On Time, Every Time.</h1>
+            <p class="reveal">SwiftLog provides seamless, global logistics solutions. From high-speed air freight to local last-mile delivery, we move the world for you.</p>
+            <div class="hero-btns reveal">
+                <a href="#quote" class="btn btn-primary">Get a Free Quote</a>
+                <a href="#tracking" class="btn btn-outline">Track Your Shipment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By -->
+    <div class="trusted-by">
+        <div class="container">
+            <h4>Trusted By 500+ Global Brands</h4>
+            <div class="logo-row reveal">
+                <!-- Fictional Client Logos (SVGs) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m8 16 2-6 6-2-2 6-6 2Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 19 9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="10" ry="4"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span>Our Expertise</span>
+                <h2>Logistics Solutions Tailored to You</h2>
+                <p>We combine advanced technology with deep industry experience to provide flexible and efficient logistics solutions.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h3>Freight Shipping</h3>
+                    <p>Global sea, air, and road freight services with real-time optimization for speed and cost-efficiency.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path><path d="M12 3v6"></path></svg>
+                    </div>
+                    <h3>Smart Warehousing</h3>
+                    <p>State-of-the-art storage facilities with automated inventory management and climate control systems.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-5h-7v5a1 1 0 0 0 1 1h2"></path><path d="M10 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M16 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg>
+                    </div>
+                    <h3>Last-Mile Delivery</h3>
+                    <p>Hyper-local delivery networks ensuring your packages reach the doorstep reliably and on schedule.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 8.2a7 7 0 0 1-9 9.8Z"></path><path d="M18 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>
+                    </div>
+                    <h3>Supply Chain MGMT</h3>
+                    <p>End-to-end supply chain visibility and optimization using AI-driven analytics for your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section id="tracking" class="tracking">
+        <div class="container">
+            <div class="tracking-card reveal">
+                <input type="text" id="trackInput" class="tracking-input" placeholder="Enter Tracking ID (e.g., SW-123456)">
+                <button class="btn btn-primary" onclick="trackShipment()">Track Shipment</button>
+            </div>
+
+            <div id="trackingResult" class="tracking-result reveal">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h3 id="trackIdDisplay">Shipment: SW-123456</h3>
+                        <p id="trackStatus">Status: <span style="color: var(--orange);">In Transit</span></p>
+                    </div>
+                    <div style="text-align: right;">
+                        <p>Estimated Delivery</p>
+                        <h4 id="estDelivery">Oct 14, 2024</h4>
+                    </div>
+                </div>
+
+                <div class="tracking-grid">
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <div class="map-grid"></div>
+                        </div>
+                        <div class="live-label"><span></span>Live View</div>
+                        <div id="mapPin" class="map-pin" style="top: 50%; left: 30%;"></div>
+                    </div>
+                    <div>
+                        <div class="tracking-steps">
+                            <div class="step active" id="step1">
+                                <div class="step-dot">✓</div>
+                                <p>Booked</p>
+                            </div>
+                            <div class="step active" id="step2">
+                                <div class="step-dot">✓</div>
+                                <p>Picked Up</p>
+                            </div>
+                            <div class="step active" id="step3">
+                                <div class="step-dot">3</div>
+                                <p>In Transit</p>
+                            </div>
+                            <div class="step" id="step4">
+                                <div class="step-dot">4</div>
+                                <p>Out for Delivery</p>
+                            </div>
+                            <div class="step" id="step5">
+                                <div class="step-dot">5</div>
+                                <p>Delivered</p>
+                            </div>
+                        </div>
+                        <div id="liveUpdates" style="margin-top: 30px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                            <p style="opacity: 0.5; margin-bottom: 10px;">ACTIVITY LOG</p>
+                            <div id="logContent">
+                                <p style="margin-bottom: 8px;">• Cargo arrived at Frankfurt Regional Hub <span style="opacity: 0.5;">(2h ago)</span></p>
+                                <p style="margin-bottom: 8px;">• Shipment processed and in transit <span style="opacity: 0.5;">(4h ago)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header reveal">
+                <span>The SwiftLog Advantage</span>
+                <h2>Why Companies Trust SwiftLog</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>99.9% On-Time Rate</h3>
+                        <p>Our intelligent routing algorithms minimize delays, ensuring your cargo arrives exactly when expected.</p>
+                    </div>
+                </div>
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Secure Handling</h3>
+                        <p>Comprehensive insurance and specialized packaging protocols for fragile, high-value, or sensitive cargo.</p>
+                    </div>
+                </div>
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Full Visibility</h3>
+                        <p>Monitor your goods in real-time with our advanced GPS tracking and milestone notification system.</p>
+                    </div>
+                </div>
+                <div class="benefit-item reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>24/7 Expert Support</h3>
+                        <p>A dedicated team of logistics professionals available day and night to handle your inquiries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <h3 class="counter" data-target="15000">0</h3>
+                    <p>Deliveries Monthly</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 class="counter" data-target="85">0</h3>
+                    <p>Countries Reached</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 class="counter" data-target="1200">0</h3>
+                    <p>Expert Employees</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 class="counter" data-target="4500">0</h3>
+                    <p>Corporate Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <span>Process</span>
+                <h2>How We Move Your Goods</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal active">
+                    <div class="timeline-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect height="4" width="8" x="8" y="2" rx="1" ry="1"></rect></svg>
+                    </div>
+                    <h3>01. Book Order</h3>
+                    <p>Choose your service through our platform and receive a detailed quote instantly.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    </div>
+                    <h3>02. We Pickup</h3>
+                    <p>Our fleet arrives at your location precisely at the scheduled time for pickup.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </div>
+                    <h3>03. Swift Transit</h3>
+                    <p>Cargo is moved through our optimized network with constant real-time tracking.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path></svg>
+                    </div>
+                    <h3>04. Safe Delivery</h3>
+                    <p>Shipment is delivered to the destination doorstep with verified proof of delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span>Success Stories</span>
+                <h2>What Our Partners Say</h2>
+            </div>
+            <div class="slider-container reveal">
+                <div class="testimonial-slider" id="slider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"SwiftLog has completely transformed our supply chain. Their on-time delivery rate is unmatched in the industry. We've seen a 30% reduction in logistics overhead."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&h=100&auto=format&fit=crop" alt="Sarah Johnson" class="author-img">
+                            <div class="author-info">
+                                <h4>Marcus Chen</h4>
+                                <p>Ops Director, TechGrowth Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The real-time visibility provided by SwiftLog is a game changer. Our customers love the accurate delivery estimates, and we love the peace of mind."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop" alt="John Doe" class="author-img">
+                            <div class="author-info">
+                                <h4>Sarah Williams</h4>
+                                <p>Founder, Bloom Flowers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Exceptional service across international borders. Their handling of customs and documentation is seamless, making our global expansion effortless."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&h=100&auto=format&fit=crop" alt="Jane Smith" class="author-img">
+                            <div class="author-info">
+                                <h4>David Miller</h4>
+                                <p>Supply Chain Lead, AeroGroup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots" id="dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section id="quote" class="quote">
+        <div class="container">
+            <div class="quote-box">
+                <div class="quote-info reveal">
+                    <h2>Get a Precise Quote in Minutes</h2>
+                    <p>Fill out the form and our team will get back to you with a competitive logistics strategy and pricing.</p>
+                    
+                    <div class="info-item" style="margin-top: 40px;">
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <h4>Call Us Directly</h4>
+                            <p>+1 (800) 555-LOGI</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div>
+                            <h4>Email Support</h4>
+                            <p>quotes@swiftlog.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div>
+                            <h4>ISO 9001 Certified</h4>
+                            <p>Guaranteed Quality & Security</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="quote-form reveal">
+                    <form onsubmit="return false">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Service Type</label>
+                                <select>
+                                    <option>Air Freight</option>
+                                    <option>Ocean Freight</option>
+                                    <option>Ground Transport</option>
+                                    <option>Warehousing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Destination</label>
+                                <input type="text" placeholder="City, Country" required>
+                            </div>
+                            <div class="form-group full">
+                                <label>Message / Details</label>
+                                <textarea rows="4" placeholder="Briefly describe your logistics needs..."></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;" onclick="alert('Quote Request Received! Our team will contact you shortly.')">Request Free Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 25px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        SWIFTLOG<span>.</span>
+                    </a>
+                    <p>Leading the way in global logistics through innovation, reliability, and dedicated customer service for over 20 years.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#tracking">Track Shipment</a></li>
+                        <li><a href="#">Global Network</a></li>
+                        <li><a href="#">Carrier Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Ocean Freight</a></li>
+                        <li><a href="#">Air Freight</a></li>
+                        <li><a href="#">Ground Shipping</a></li>
+                        <li><a href="#">Warehousing</a></li>
+                        <li><a href="#">Customs Clearance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Working Hours</h4>
+                    <p>Mon - Fri: 8:00 - 20:00</p>
+                    <p>Sat - Sun: 10:00 - 16:00</p>
+                    <p>Support: 24/7 Available</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SwiftLog Logistics. All Rights Reserved.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat -->
+    <div class="chat-widget">
+        <button class="chat-toggle" id="chatToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h4>Support Online</h4>
+                <button id="closeChat" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem;">×</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="message bot">Hello! How can I help you with your shipment today?</div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+
+        // Stats Counter
+        const statsSection = document.querySelector('.stats');
+        const counters = document.querySelectorAll('.counter');
+        let counterStarted = false;
+
+        const countUp = () => {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 50;
+                let current = 0;
+
+                const updateCount = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.innerText = Math.ceil(current).toLocaleString() + (target > 1000 ? '+' : '');
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target.toLocaleString() + (target > 1000 ? '+' : '');
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !counterStarted) {
+                countUp();
+                counterStarted = true;
+            }
+        });
+
+        statsObserver.observe(statsSection);
+
+        // Testimonial Slider
+        const slider = document.getElementById('slider');
+        const dotsContainer = document.getElementById('dots');
+        const slides = document.querySelectorAll('.testimonial-card');
+        let currentSlide = 0;
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const updateDots = () => {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        };
+
+        const goToSlide = (n) => {
+            currentSlide = n;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateDots();
+        };
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        }, 8000);
+
+        // Shipment Tracking Logic
+        function trackShipment() {
+            const input = document.getElementById('trackInput').value;
+            const result = document.getElementById('trackingResult');
+            const idDisplay = document.getElementById('trackIdDisplay');
+            const statusText = document.getElementById('trackStatus');
+            const mapPin = document.getElementById('mapPin');
+            const logContent = document.getElementById('logContent');
+
+            if (input.trim() === "") {
+                alert("Please enter a valid Tracking ID");
+                return;
+            }
+
+            // Reset UI
+            result.style.display = "block";
+            logContent.innerHTML = "";
+            
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Locating...";
+            
+            // Simulation progression
+            setTimeout(() => {
+                btn.innerHTML = "Checking Status...";
+                idDisplay.innerText = "Shipment: " + input.toUpperCase();
+                result.classList.add('active');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    statusText.innerHTML = 'Status: <span style="color: var(--orange); animation: blink 1s infinite;">Updating...</span>';
+                    
+                    // Simulate dynamic updates
+                    setTimeout(() => {
+                        statusText.innerHTML = 'Status: <span style="color: var(--orange);">In Transit</span>';
+                        mapPin.style.top = "45%";
+                        mapPin.style.left = "40%";
+                        logContent.innerHTML += `<p style="margin-bottom: 8px;">• Dispatch confirmation received <span style="opacity: 0.5;">(Just now)</span></p>`;
+                        
+                        setTimeout(() => {
+                            document.getElementById('step4').classList.add('active');
+                            statusText.innerHTML = 'Status: <span style="color: var(--orange);">Out for Delivery</span>';
+                            mapPin.style.top = "60%";
+                            mapPin.style.left = "75%";
+                            logContent.innerHTML = `<p style="margin-bottom: 8px;">• Out for delivery - London Southwest Hub <span style="opacity: 0.5;">(Just now)</span></p>` + logContent.innerHTML;
+                        }, 3000);
+                    }, 2000);
+                }, 1000);
+            }, 800);
+        }
+
+        // Live Chat Logic
+        const chatToggle = document.getElementById('chatToggle');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        chatToggle.addEventListener('click', () => chatWindow.classList.toggle('active'));
+        closeChat.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+        function addMessage(text, type) {
+            const msg = document.createElement('div');
+            msg.className = `message ${type}`;
+            msg.innerText = text;
+            chatBody.appendChild(msg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function simulateResponse() {
+            typingIndicator.style.display = 'flex';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                const responses = [
+                    "I'd be happy to check that tracking status for you.",
+                    "Our systems show your package is currently at the distribution center.",
+                    "Is there anything else I can assist you with today?",
+                    "Thank you for contacting SwiftLog support!"
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, 'bot');
+            }, 2000);
+        }
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if (text) {
+                addMessage(text, 'user');
+                chatInput.value = '';
+                simulateResponse();
+            }
+        }
+
+        sendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+    </script>
+</body>
+</html>
